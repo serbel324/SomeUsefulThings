@@ -5,6 +5,7 @@
 #define IOSTREAM_SUPPORTED
 
 using __ftype = double;
+constexpr __ftype __EPS = 1e-9;;
 
 template <typename T> /* T must be algebraic field */
 struct Vec3
@@ -112,9 +113,14 @@ __ftype dist(Vec3<T> a, Vec3<T> b) /* returns distance between point a and b */
 }
 
 template <typename T>
-__ftype angle(Vec3<T> a, Vec3<T> b) /* returns angle between vectors aand b int range[-pi, pi] */
+__ftype angle(Vec3<T> a, Vec3<T> b) /* returns angle between vectors a and b in range[0, pi] */
 {
-    return std::atan2(cross_prod(a, b), dot_prod(a, b));
+    if (a.abs() < __EPS || b.abs() < __EPS)
+    {
+        return 0;
+    }
+
+    return std::acos(dot_prod(a, b) / a.abs() / b.abs());
 }
  
 #ifdef IOSTREAM_SUPPORTED
