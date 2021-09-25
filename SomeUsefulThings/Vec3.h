@@ -6,7 +6,7 @@
 
 using __ftype = double;
 
-template <typename T> // T must be algebraic field
+template <typename T> /* T must be algebraic field */
 struct Vec3
 {
     Vec3(T x = 0, T y = 0, T z = 0)
