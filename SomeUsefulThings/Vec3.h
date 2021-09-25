@@ -135,9 +135,9 @@ std::istream& operator>>(std::istream& in, Vec3<T>& v)
 }
 
 template <typename T>
-std::ostream& operator<<(std::ostream& in, Vec3<T>& v)
+std::ostream& operator<<(std::ostream& out, Vec3<T>& v)
 {
     out << v.x << ' ' << v.y << ' ' << v.z;
-    return in;
+    return out;
 }
 #endif

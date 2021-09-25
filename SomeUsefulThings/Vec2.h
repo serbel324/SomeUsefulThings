@@ -120,9 +120,9 @@ std::istream& operator>>(std::istream& in, Vec2<T>& v)
 }
 
 template <typename T>
-std::ostream& operator<<(std::ostream& in, Vec2<T>& v)
+std::ostream& operator<<(std::ostream& out, Vec2<T>& v)
 {
     out << v.x << ' ' << v.y;
-    return in;
+    return out;
 }
 #endif
