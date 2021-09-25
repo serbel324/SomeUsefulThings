@@ -2,10 +2,11 @@
 #include <cmath>
 
 #define USINGS_FOR_TYPES
+#define IOSTREAM_SUPPORTED
 
 using __ftype = double;
 
-template <typename T>
+template <typename T> // T must be algebraic field
 struct Vec3
 {
     Vec3(T x = 0, T y = 0, T z = 0)
@@ -40,8 +41,9 @@ struct Vec3
         other.z = 0;
     }
 
+    ~Vec3() = default;
 
-    Vec3 operator-()
+    Vec3 operator-() const
     {
         return Vec3(-x, -y, -z);
     }
@@ -59,13 +61,13 @@ struct Vec3
         return *this += -r;
     }
 
-    Vec3& operator+(Vec3 r)
+    Vec3& operator+(Vec3 r) const
     {
         Vec3 v(*this);
         return v += r;
     }
 
-    Vec3& operator-(Vec3 r)
+    Vec3& operator-(Vec3 r) const
     {
         Vec3 v(*this);
         return v -= r;
@@ -89,13 +91,13 @@ using Vec3d = Vec3<double>;
 
 
 template <typename T>
-T dot_prod(Vec3<T> l, Vec3<T> r) // returns scalar product
+T dot_prod(Vec3<T> l, Vec3<T> r) /* returns scalar product */
 {
     return l.x * r.x + l.y * r.y + l.z * r.z;
 }
 
 template <typename T>
-Vec3<T> cross_prod(Vec3<T> l, Vec3<T> r) // returns vector product
+Vec3<T> cross_prod(Vec3<T> l, Vec3<T> r) /* returns vector product */
 {
     return Vec3(
         l.y * r.z - l.z * r.y,
@@ -104,13 +106,32 @@ Vec3<T> cross_prod(Vec3<T> l, Vec3<T> r) // returns vector product
 }
 
 template <typename T>
-__ftype dist(Vec3<T> a, Vec3<T> b) // returns distance between point a and b
+__ftype dist(Vec3<T> a, Vec3<T> b) /* returns distance between point a and b */
 {
     return (a - b).abs();
 }
 
 template <typename T>
-__ftype angle(Vec3<T> a, Vec3<T> b) // returns angle between vectors a and b int range [-pi, pi]
+__ftype angle(Vec3<T> a, Vec3<T> b) /* returns angle between vectors aand b int range[-pi, pi] */
 {
     return std::atan2(cross_prod(a, b), dot_prod(a, b));
 }
+ 
+#ifdef IOSTREAM_SUPPORTED
+#include <iostream>
+
+/* ------------------ I/O operators ------------------ */
+template <typename T>
+std::istream& operator>>(std::istream& in, Vec3<T>& v)
+{
+    in >> v.x >> v.y >> v.z;
+    return in;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& in, Vec3<T>& v)
+{
+    out << v.x << ' ' << v.y << ' ' << v.z;
+    return in;
+}
+#endif
