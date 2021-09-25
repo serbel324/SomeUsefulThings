@@ -5,7 +5,8 @@
 
 double get_random_double(double a, double b)
 {
-    if (b <= a) {
+    if (b <= a) 
+    {
         return 0;
     }
 
@@ -18,7 +19,8 @@ double get_random_double(double a, double b)
 
 int get_random_int(int a, int b)
 {
-    if (b <= a) {
+    if (b <= a) 
+    {
         return 0;
     }
 
