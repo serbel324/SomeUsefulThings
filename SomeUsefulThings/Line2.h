@@ -130,7 +130,7 @@ FTYPE Line2::operator()(VEC2F p)
 
 FTYPE dist(VEC2F p, Line2 l)
 {
-    return l(p) / l.get_normal().abs();
+    return std::abs(l(p) / l.get_normal().abs());
 }
 
 FTYPE dist(Line2 l, VEC2F p)

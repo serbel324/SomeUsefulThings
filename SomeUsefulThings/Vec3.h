@@ -133,6 +133,8 @@ Vec3<T>& Vec3<T>::operator=(const Vec3& other)
     x = other.x;
     y = other.y;
     z = other.z;
+
+    return *this;
 }
 
 template<typename T>
@@ -142,6 +144,8 @@ Vec3<T>& Vec3<T>::operator=(Vec3&& other)
     y = other.y;
     z = other.z;
     other.x = other.y = other.z = 0;
+
+    return *this;
 }
 
 template<typename T>

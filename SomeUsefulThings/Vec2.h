@@ -150,6 +150,8 @@ Vec2<T>& Vec2<T>::operator=(const Vec2& other)
 {
     x = other.x;
     y = other.y;
+
+    return *this;
 }
 
 template<typename T>
@@ -158,6 +160,9 @@ Vec2<T>& Vec2<T>::operator=(Vec2&& other)
     x = other.x;
     y = other.y;
     other.x = other.y = 0;
+
+    return *this;
+
 }
 
 template<typename T>
