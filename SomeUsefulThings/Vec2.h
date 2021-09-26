@@ -64,6 +64,8 @@ struct Vec2
     FTYPE abs();
     Vec2 norm();
 
+    Vec2 rotate(FTYPE a);
+
     T x;
     T y;
 };
@@ -213,6 +215,14 @@ Vec2<T> Vec2<T>::norm()
         return *this;
     }
     return Vec2(x / abs(), y / abs());
+}
+
+template<typename T>
+inline Vec2<T> Vec2<T>::rotate(FTYPE a)
+{
+    return Vec2(
+        x * std::cos(a) - y * std::sin(a),
+        x * std::sin(a) + y * std::cos(a));
 }
 
 template<typename T>
