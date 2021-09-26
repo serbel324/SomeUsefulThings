@@ -247,13 +247,15 @@ Vec2<T> Vec2<T>::operator/(T1 r) const
 template<typename T>
 std::istream& operator>>(std::istream& in, Vec2<T>& v)
 {
-    // TODO: insert return statement here
+    in >> v.x >> v.y;
+    return in;
 }
 
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const Vec2<T>& v)
 {
-    // TODO: insert return statement here
+    out << v.x << ' ' << v.y;
+    return out;
 }
 #endif
 

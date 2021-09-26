@@ -90,6 +90,8 @@ Line2& Line2::operator=(const Line2& other)
     a = other.a;
     b = other.b;
     c = other.c;
+
+    return *this;
 }
 
 Line2& Line2::operator=(Line2&& other) noexcept
@@ -98,6 +100,8 @@ Line2& Line2::operator=(Line2&& other) noexcept
     b = other.b;
     c = other.c;
     other.a = other.b = other.c = 0;
+
+    return *this;
 }
 
 void Line2::normalize()
@@ -131,7 +135,7 @@ FTYPE dist(VEC2F p, Line2 l)
 
 FTYPE dist(Line2 l, VEC2F p)
 {
-    dist(p, l);
+    return dist(p, l);
 }
 
 VEC2F reflect(Line2 l, VEC2F p)
